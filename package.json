@@ -1,0 +1,30 @@
+{
+  "name": "fabrica",
+  "version": "1.0.0",
+  "description": "Well, it means \"factory\" in portuguese",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/reu/fabrica.git"
+  },
+  "keywords": [
+    "factory",
+    "factory",
+    "girl",
+    "fabricate",
+    "test",
+    "spec"
+  ],
+  "author": "Rodrigo Navarro <rnavarro@rnavarro.com.br>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/reu/fabrica/issues"
+  },
+  "homepage": "https://github.com/reu/fabrica#readme",
+  "dependencies": {
+    "ramda": "^0.21.0"
+  }
+}
