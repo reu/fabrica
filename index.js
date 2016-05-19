@@ -4,16 +4,28 @@ const isString = is(String);
 
 const traitName = (parent, trait) => `${parent}/${trait}`;
 
+const definitionSequencer = sequenceIds => name => {
+  sequenceIds[name] = sequenceIds[name] ? sequenceIds[name] + 1 : 1;
+  return sequenceIds[name];
+};
+
 const define = definitions => (name, parent) => {
   const definition = {
     attributes: parent ? clone(parent.attributes) : {},
     builder: parent ? parent.builder : identity,
     creator: parent ? parent.creator : identity,
+    sequenceIds: parent ? parent.sequenceIds : {},
   };
 
   definitions[name] = definition;
+  const sequencer = definitionSequencer(definition.sequenceIds);
 
   return {
+    sequence: function(name, valueFn) {
+      definition.attributes[name] = () => valueFn(sequencer(name));
+      return this;
+    },
+
     attr: function(name, value) {
       definition.attributes[name] = value;
       return this;

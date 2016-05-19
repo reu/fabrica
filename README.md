@@ -7,11 +7,14 @@ TBD
 ```javascript
 const { define, create, build } = require("fabrica")();
 
-define("post")
+define("book")
   .attr("title", "Hai")
 
   // "Lazy" attributes
   .attr("date", () => Date.now())
+
+  // "Sequence" attributes
+  .sequence("isbn", sequenceNumber => `${sequenceNumber}`)
 
   // Relations
   .attr("author", () => create("user"))
@@ -27,9 +30,9 @@ define("post")
     trait.attr("title", null);
   });
 
-build("post", "withoutTitle")
-  .then(post => console.log(post.title || "Untitled", "by", author.name));
+build("book", "withoutTitle")
+  .then(book => console.log(book.title || "Untitled", "by", author.name));
 
-create("post")
-  .then(post => console.log("Persisted post with id", post.id));
+create("book")
+  .then(book => console.log("Persisted book with id", book.id));
 ```
